@@ -1,6 +1,7 @@
 html,
 body {
-   font-family: Verdana, Geneva, Tahoma, sans-serif;
+/*   font-family: Verdana, Geneva, Tahoma, sans-serif; */
+   font-family: Georgia;
    background-color: #222831;
    color: #eeeeee;
    height: 100%;
