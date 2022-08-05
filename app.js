@@ -1,7 +1,7 @@
 var app = new Vue({
    el: "#app",
    data: {
-      title: "Aditya's Birthday in:",
+      title: "Dinda's Birthday in:",
       utcDate: "",
       myDate: "",
       yourDate: "",
@@ -32,7 +32,7 @@ var app = new Vue({
          let thisYear = date.getFullYear();
          let bod = new Date("21 Juni " + thisYear).getTime();
          let year = (bod - current) / day < 0 ? thisYear + 1 : thisYear;
-         let countDown = new Date("21 Juni " + year).getTime();
+         let countDown = new Date("5 December " + year).getTime();
 
          setInterval(function () {
             let now = new Date().getTime();
