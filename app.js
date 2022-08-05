@@ -30,7 +30,7 @@ var app = new Vue({
          let that = this;
          let current = date.getTime();
          let thisYear = date.getFullYear();
-         let bod = new Date("21 Juni " + thisYear).getTime();
+         let bod = new Date("5 December " + thisYear).getTime();
          let year = (bod - current) / day < 0 ? thisYear + 1 : thisYear;
          let countDown = new Date("5 December " + year).getTime();
 
