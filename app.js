@@ -1,7 +1,9 @@
 var app = new Vue({
    el: "#app",
    data: {
-      title: "Dinda's Birthday in:",
+      title: "Anniversaire de Dinda à :",
+	        // title: "Asdf Ghjkl Qwerty",
+
       utcDate: "",
       myDate: "",
       yourDate: "",
