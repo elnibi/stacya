@@ -89,7 +89,7 @@ li span {
 }
 
 /* Background animation */
-/*.background-animation {
+.background-animation {
     background: linear-gradient(45deg, #000000, #434343);
     background-size: 400% 400%;
     animation: gradientAnimation 10s ease infinite;
@@ -99,7 +99,7 @@ li span {
     0% { background-position: 0% 0%; }
     50% { background-position: 100% 100%; }
     100% { background-position: 0% 0%; }
-}*/
+}
 
 /* Responsif */
 @media screen and (max-width: 768px) {
