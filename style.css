@@ -1,59 +1,78 @@
+/* Reset dasar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Mengatur font dan warna dasar */
 html, body {
-   font-family: 'Open Sans', sans-serif;
-   background-color: #222831;
-   color: #eeeeee;
-   height: 100%;
-   margin: auto;
-   display: flex;
-   align-items: center;
-   text-align: center;
-   overflow: hidden;
-   background: radial-gradient(circle at left bottom, #caffbf, #222831);
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #f06, #a0f);
+    color: #ffffff;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
 }
 
 h1 {
-   font-size: 2.5rem;
-   text-align: center;
-   font-weight: bold;
-   color: #ffd6a5;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #ffffff;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    letter-spacing: 1px;
 }
 
 ul {
-   margin: 0;
-   padding: 0;
-   background: rgba(0, 0, 0, 0.7);
-   list-style: none;
-   padding: 1em;
-   border-radius: 10px;
+    list-style: none;
+    padding: 0;
 }
 
 li {
-   display: inline-block;
-   font-size: 1.2rem;
-   color: #a0c4ff;
-   padding: 1em;
-   text-transform: capitalize;
+    font-size: 1.5rem;
+    margin: 10px 0;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 li span {
-   color: #ffffff;
-   display: block;
-   font-size: 3rem;
-   font-weight: bold;
-   transition: transform 0.5s ease-in-out;
+    font-size: 3rem;
+    font-weight: bold;
+    color: #ffeb3b;
 }
 
-.animate {
-   transform: scale(1.1);
+@media screen and (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    li {
+        font-size: 1.2rem;
+        padding: 8px;
+    }
+
+    li span {
+        font-size: 2.5rem;
+    }
 }
 
-#app {
-   z-index: 10;
-   position: relative;
-}
+@media screen and (max-width: 480px) {
+    h1 {
+        font-size: 1.5rem;
+    }
 
-#c {
-   position: absolute;
-   top: 0;
-   left: 0;
+    li {
+        font-size: 1rem;
+        padding: 6px;
+    }
+
+    li span {
+        font-size: 2rem;
+    }
 }
