@@ -42,7 +42,8 @@
                         let year = (birthdayDate - today) / day < 0 ? thisYear + 1 : thisYear;
                         let countDownDate = new Date("December 5, " + year).getTime();
 
-                        this.age = getAge(new Date('2002-12-05'));
+                        // Calculate the age Dinda will turn on the upcoming birthday
+                        this.age = getAge(new Date('2002-12-05')) + 1;
                         this.title = `Dinda's ${this.age} Birthday Countdown`;
 
                         setInterval(function () {
