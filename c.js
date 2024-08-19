@@ -6,32 +6,29 @@ var cX = cw / 2,
   cY = ch / 2;
 var rad = Math.PI / 180;
 var howMany = 100;
-// size of the tangent
 var t = 1 / 5;
 
 ctx.strokeStyle = "white";
 ctx.shadowBlur = 5;
-ctx.shadowOffsetX = 2;
-ctx.shadowOffsetY = 2;
 ctx.shadowColor = "#333";
 ctx.globalAlpha = .85;
 
-var colors = ["#930c37", "#ea767a", "#ee6133", "#ecac43", "#fb9983", "#f9bc9f", "#f8ed38", "#a8e3f9", "#d1f2fd", "#ecd5f5", "#fee4fd", "#8520b4", "#FA2E59", "#FF703F", "#FF703F", "#F7BC05", "#ECF6BB", "#76BCAD"];
+var colors = ["#ffadad", "#ffd6a5", "#fdffb6", "#caffbf", "#9bf6ff", "#a0c4ff", "#bdb2ff", "#ffc6ff", "#fffffc"];
 var flowers = [];
 for (var hm = 0; hm < howMany; hm++) {
-  flowers[hm] = {}
-  flowers[hm].cx = ~~(Math.random() * cw) + 1;
-  flowers[hm].cy = ~~(Math.random() * ch) + 1;
-  flowers[hm].R = randomIntFromInterval(20, 50);
-  flowers[hm].Ri = randomIntFromInterval(5, 7) / 10;
-  flowers[hm].k = randomIntFromInterval(5, 10) / 10;
-  flowers[hm].ki = randomIntFromInterval(2, 7) / 100;
-  flowers[hm].K = randomIntFromInterval(5, 16) / 10;
-  flowers[hm].fs = ~~(Math.random() * colors.length) + 1;
-  flowers[hm].cs = ~~(Math.random() * colors.length) + 1;
-  flowers[hm].nP = randomIntFromInterval(4, 10);
-  flowers[hm].spacing = randomIntFromInterval(4, 10);
-
+  flowers[hm] = {
+    cx: Math.random() * cw,
+    cy: Math.random() * ch,
+    R: randomIntFromInterval(20, 50),
+    Ri: randomIntFromInterval(5, 7) / 10,
+    k: randomIntFromInterval(5, 10) / 10,
+    ki: randomIntFromInterval(2, 7) / 100,
+    K: randomIntFromInterval(5, 16) / 10,
+    fs: colors[randomIntFromInterval(0, colors.length - 1)],
+    cs: colors[randomIntFromInterval(0, colors.length - 1)],
+    nP: randomIntFromInterval(4, 10),
+    spacing: randomIntFromInterval(4, 10)
+  };
 }
 
 function buildRy(R, k, cx, cy, nP, spacing) {
@@ -89,33 +86,15 @@ function buildRy(R, k, cx, cy, nP, spacing) {
 
 function update() {
   ctx.clearRect(0, 0, cw, ch);
-
-  for (var f = 0; f < flowers.length; f++) {
-
-    if (flowers[f].k < flowers[f].K) {
-      flowers[f].R += flowers[f].Ri;
-      flowers[f].k += flowers[f].ki;
+  flowers.forEach(function (flower) {
+    if (flower.k < flower.K) {
+      flower.R += flower.Ri;
+      flower.k += flower.ki;
     }
-    var R = flowers[f].R;
-    var Ri = flowers[f].Ri;
-    var k = flowers[f].k;
-    var ki = flowers[f].ki;
-    var K = flowers[f].K;
-    var cx = flowers[f].cx;
-    var cy = flowers[f].cy;
-    var fs = colors[flowers[f].fs];
-    var cs = colors[flowers[f].cs];
-    var nP = flowers[f].nP;
-    var spacing = flowers[f].spacing;
-
-    for (var petal = 0; petal < petals.length; petal++) { //console.log(petals[petal])
-      petals = buildRy(R, k, cx, cy, nP, spacing);
-      ctx.fillStyle = fs;
-      drawCurve(petals[petal]);
-    }
-    drawCenter(k, cx, cy, cs);
-  }
-
+    var petals = buildRy(flower.R, flower.k, flower.cx, flower.cy, flower.nP, flower.spacing);
+    petals.forEach(drawCurve);
+    drawCenter(flower.k, flower.cx, flower.cy, flower.cs);
+  });
   requestId = window.requestAnimationFrame(update);
 }
 
@@ -179,32 +158,26 @@ function controlPoints(p) {
 }
 
 function randomIntFromInterval(mn, mx) {
-  return ~~(Math.random() * (mx - mn + 1) + mn);
+  return Math.floor(Math.random() * (mx - mn + 1)) + mn;
 }
 
+window.addEventListener('scroll', function() {
+  var scrollY = window.scrollY;
+  flowers.forEach(function (flower) {
+    flower.cy += scrollY * 0.05;
+  });
+});
+
 for (var f = 0; f < flowers.length; f++) {
-  var R = flowers[f].R;
-  var Ri = flowers[f].Ri;
-  var k = flowers[f].k;
-  var ki = flowers[f].ki;
-  var K = flowers[f].K;
-  var cx = flowers[f].cx;
-  var cy = flowers[f].cy;
-  var fs = colors[flowers[f].fs];
-  var cs = colors[flowers[f].cs];
-  var nP = flowers[f].nP;
-  var spacing = flowers[f].spacing;
-  var petals = buildRy(R, k, cx, cy, nP, spacing);
-  ctx.fillStyle = colors[flowers[f].fs];
-  for (var i = 0; i < petals.length; i++) {
-    drawCurve(petals[i]);
-  }
+  var petals = buildRy(flowers[f].R, flowers[f].k, flowers[f].cx, flowers[f].cy, flowers[f].nP, flowers[f].spacing);
+  petals.forEach(drawCurve);
+  drawCenter(flowers[f].k, flowers[f].cx, flowers[f].cy, flowers[f].cs);
 }
+
 requestId = window.requestAnimationFrame(update);
 
 window.setTimeout(function() {
   if (requestId) {
-    window.cancelAnimationFrame(requestId)
-  };
-  console.log("cancelAnimationFrame")
-}, 6000)
+    window.cancelAnimationFrame(requestId);
+  }
+}, 6000);
