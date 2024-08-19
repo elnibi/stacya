@@ -1,35 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Compte à rebours de l'anniversaire de Dinda</title>
-	<link rel="icon" type="image/png" sizes="32x32" href="icons8-love-ios-glyph-32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="icons8-love-ios-glyph-16.png">
-	<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown to Dinda's Birthday (Turning {{age}} years old!)</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var app = new Vue({
+                el: "#app",
+                data: {
+                    title: "",
+                    days: "",
+                    hours: "",
+                    minutes: "",
+                    seconds: "",
+                },
+                methods: {
+                    countdown: function () {
+                        const second = 1000;
+                        const minute = second * 60;
+                        const hour = minute * 60;
+                        const day = hour * 24;
+                        let that = this;
+
+                        function getAge(date) {
+                            const today = new Date();
+                            let age = today.getFullYear() - date.getFullYear();
+                            const m = today.getMonth() - date.getMonth();
+                            if (m < 0 || (m === 0 && today.getDate() < date.getDate())) {
+                                age--;
+                            }
+                            return age;
+                        }
+
+                        let date = new Date();
+                        let current = date.getTime();
+                        let thisYear = date.getFullYear();
+                        let bod = new Date("December 5, " + thisYear);
+                        let year = (bod - current) / day < 0 ? thisYear + 1 : thisYear;
+                        let countDown = new Date("December 5, " + year).getTime();
+
+                        this.title = `Countdown to Dinda's Birthday (Turning ${getAge(new Date('2002-12-05'))} years old!)`;
+
+                        setInterval(function () {
+                            let now = new Date().getTime();
+                            let distance = countDown - now;
+
+                            that.days = Math.floor(distance / day);
+                            that.hours = Math.floor((distance % day) / hour);
+                            that.minutes = Math.floor((distance % hour) / minute);
+                            that.seconds = Math.floor((distance % minute) / second);
+                        }, second);
+                    },
+                },
+                beforeMount() {
+                    this.countdown();
+                },
+            });
+        });
+    </script>
 </head>
-
 <body>
-<canvas id="c"></canvas>
-<!--<audio id="bg-music" loop autoplay>
-  <source src="music.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>-->
-
-<div id="app">
-	<h1>{{title}}</h1>
-	<ul>
-		<li id="days"><span>{{days}}</span>jours</li>
-		<li id="hours"><span>{{hours}}</span>heures</li>
-		<li id="minutes"><span>{{minutes}}</span>minutes</li>
-		<li id="seconds"><span>{{seconds}}</span>secondes</li>
-	</ul>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
-<script src="app.js"></script>
-<script src="c.js"></script>
+    <div id="app">
+        <h1>{{title}}</h1>
+        <ul>
+            <li><span>{{days}}</span> days</li>
+            <li><span>{{hours}}</span> hours</li>
+            <li><span>{{minutes}}</span> minutes</li>
+            <li><span>{{seconds}}</span> seconds</li>
+        </ul>
+    </div>
 </body>
-
 </html>
