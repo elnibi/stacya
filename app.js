@@ -31,6 +31,7 @@ var app = new Vue({
          let currentYear = date.getFullYear();
          let age = currentYear - this.birthYear;  // Menghitung usia
          this.title = `Anniversaire de Dinda (${age} ans) à :`;  // Menambahkan usia ke dalam judul
+         console.log(this.title);  // Debugging: cetak judul ke konsol
 
          let current = date.getTime();
          let bod = new Date(`5 December ${currentYear}`).getTime();
