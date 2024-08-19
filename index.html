@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Countdown to Dinda's Birthday (Turning {{age}} years old!)</title>
+    <title>Dinda's {{age}} Birthday Countdown</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
     <script>
@@ -16,6 +16,7 @@
                     hours: "",
                     minutes: "",
                     seconds: "",
+                    age: 0,
                 },
                 methods: {
                     countdown: function () {
@@ -35,18 +36,18 @@
                             return age;
                         }
 
-                        let date = new Date();
-                        let current = date.getTime();
-                        let thisYear = date.getFullYear();
-                        let bod = new Date("December 5, " + thisYear);
-                        let year = (bod - current) / day < 0 ? thisYear + 1 : thisYear;
-                        let countDown = new Date("December 5, " + year).getTime();
+                        let today = new Date();
+                        let thisYear = today.getFullYear();
+                        let birthdayDate = new Date("December 5, " + thisYear);
+                        let year = (birthdayDate - today) / day < 0 ? thisYear + 1 : thisYear;
+                        let countDownDate = new Date("December 5, " + year).getTime();
 
-                        this.title = `Countdown to Dinda's Birthday (Turning ${getAge(new Date('2002-12-05'))} years old!)`;
+                        this.age = getAge(new Date('2002-12-05'));
+                        this.title = `Dinda's ${this.age} Birthday Countdown`;
 
                         setInterval(function () {
                             let now = new Date().getTime();
-                            let distance = countDown - now;
+                            let distance = countDownDate - now;
 
                             that.days = Math.floor(distance / day);
                             that.hours = Math.floor((distance % day) / hour);
