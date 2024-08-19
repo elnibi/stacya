@@ -5,33 +5,31 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Compte à rebours de l'anniversaire de Dinda</title>
-		<!-- <title>xxx xxx xxx</title> -->
-
 	<link rel="icon" type="image/png" sizes="32x32" href="icons8-love-ios-glyph-32.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="icons8-love-ios-glyph-16.png">
 	<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-<canvas id = 'c'></canvas>
-<script src="c.js"></script>
-	<div id="app">
-		<h1>{{title}}</h1>
-		<ul>
-			<li><span>{{days}}</span>jours</li>
-			<li><span>{{hours}}</span>heures</li>
-			<li><span>{{minutes}}</span>minutes</li>
-			<li><span>{{seconds}}</span>secondes</li>
-		</ul>
-		<!--<small>UTC Timezone: {{utcDate}} UTC</small>
-		<br>
-		<small>Dinda's Timezone: {{myDate}} UTC+7</small>
-		<br>
-		<small>Your Browser Timezone: {{yourDate}}</small>-->
-	</div>
+<canvas id="c"></canvas>
+<audio id="bg-music" loop autoplay>
+  <source src="music.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
 
-	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
-	<script src="app.js"></script>
+<div id="app">
+	<h1>{{title}}</h1>
+	<ul>
+		<li id="days"><span>{{days}}</span>jours</li>
+		<li id="hours"><span>{{hours}}</span>heures</li>
+		<li id="minutes"><span>{{minutes}}</span>minutes</li>
+		<li id="seconds"><span>{{seconds}}</span>secondes</li>
+	</ul>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+<script src="app.js"></script>
+<script src="c.js"></script>
 </body>
 
 </html>
