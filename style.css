@@ -7,9 +7,9 @@
 
 /* Mengatur font dan warna dasar */
 html, body {
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(135deg, #f06, #a0f);
-    color: #ffffff;
+    font-family: 'Georgia', serif;
+    background: linear-gradient(135deg, #1a1a1a, #4d4d4d);
+    color: #f4f4f4;
     height: 100%;
     display: flex;
     justify-content: center;
@@ -18,15 +18,18 @@ html, body {
     overflow: hidden;
 }
 
+/* Mengatur style h1 */
 h1 {
-    font-size: 2.5rem;
-    font-weight: bold;
+    font-size: 3rem;
+    font-weight: normal;
     margin-bottom: 20px;
-    color: #ffffff;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-    letter-spacing: 1px;
+    color: #e0e0e0;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+    letter-spacing: 2px;
+    font-family: 'Cloister Black', 'Georgia', serif; /* Font bergaya gothic */
 }
 
+/* Mengatur style untuk elemen list */
 ul {
     list-style: none;
     padding: 0;
@@ -35,44 +38,47 @@ ul {
 li {
     font-size: 1.5rem;
     margin: 10px 0;
-    padding: 10px;
-    background: rgba(0, 0, 0, 0.6);
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid #333;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    color: #e0e0e0;
+    font-family: 'Georgia', serif;
 }
 
 li span {
-    font-size: 3rem;
+    font-size: 4rem;
     font-weight: bold;
-    color: #ffeb3b;
+    color: #ff6f61; /* Warna kontras yang berani */
 }
 
 @media screen and (max-width: 768px) {
     h1 {
-        font-size: 2rem;
+        font-size: 2.5rem;
     }
 
     li {
         font-size: 1.2rem;
-        padding: 8px;
+        padding: 12px;
     }
 
     li span {
-        font-size: 2.5rem;
+        font-size: 3rem;
     }
 }
 
 @media screen and (max-width: 480px) {
     h1 {
-        font-size: 1.5rem;
+        font-size: 2rem;
     }
 
     li {
         font-size: 1rem;
-        padding: 6px;
+        padding: 10px;
     }
 
     li span {
-        font-size: 2rem;
+        font-size: 2.5rem;
     }
 }
