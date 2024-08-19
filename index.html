@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dinda's {{age}} Birthday Countdown</title>
+    <title>Dinda's Birthday Countdown</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
     <script>
@@ -46,6 +46,9 @@
                         this.age = getAge(new Date('2002-12-05')) + 1;
                         this.title = `Dinda's ${this.age} Birthday Countdown`;
 
+                        // Update the <title> element
+                        document.title = this.title;
+
                         setInterval(function () {
                             let now = new Date().getTime();
                             let distance = countDownDate - now;
@@ -54,6 +57,9 @@
                             that.hours = Math.floor((distance % day) / hour);
                             that.minutes = Math.floor((distance % hour) / minute);
                             that.seconds = Math.floor((distance % minute) / second);
+                            
+                            // Update the <title> element on each interval tick
+                            document.title = that.title;
                         }, second);
                     },
                 },
